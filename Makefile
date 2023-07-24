@@ -7,7 +7,8 @@ SRC_DIR 	=	./source
 OBJ_DIR 	=	./objects
 INC_DIR		= 	./includes
 
-FILES 		=	main 
+FILES 		=	main \
+				ft_parse_map
 
 SRCS 		= 	$(addsuffix .c, $(addprefix $(SRC_DIR)/, $(FILES)))
 OBJS 		= 	$(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(FILES)))
