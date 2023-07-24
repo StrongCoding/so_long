@@ -20,8 +20,8 @@ INC			=	-I $(INC_DIR) -I $(LIBFT_DIR) -I $(MLX_DIR) -I /usr/X11/include
 LIBFT_DIR = ./ft_printf
 LIBFT = ./ft_printf/libftprintf.a
 
-MLX_DIR = ./minilibx_opengl
-MLX = ./minilibx_opengl/libmlx.a
+MLX_DIR = ./minilibx-linux
+MLX = ./minilibx-linux/libmlx.a
 
 all: $(NAME)
 
@@ -61,3 +61,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+

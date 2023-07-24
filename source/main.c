@@ -6,15 +6,12 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/24 07:01:52 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/24 11:17:42 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx_opengl/mlx.h"
-#include "../minilibx_opengl/mlx_int.h"
-#include "../minilibx_opengl/mlx_new_window.h"
-#include "../minilibx_opengl/mlx_opengl.h"
-#include "../minilibx_opengl/mlx_png.h"
+#include "../minilibx-linux/mlx.h"
+
 
 int	main(void)
 {
