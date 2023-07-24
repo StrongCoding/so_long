@@ -6,11 +6,12 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/24 15:29:07 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/24 19:37:15 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include <mlx.h>
+#include "../includes/so_long.h"
 
 t_sprite	*ft_lstimgnew(char *content)
 {
@@ -71,17 +72,26 @@ int	color_map_1(void *mlx, void *win, int w, int h)
 	return (0);
 }
 
-int	key_hook(int keycode, t_init *vars)
+int	key_hook(int keycode, t_init *init)
 {
-	printf("Hello from key_hook!\n");
+	if (keycode == KEY_UP || keycode == KEY_W)
+		printf("walk up!\n");
+	else if (keycode == KEY_DOWN || keycode == KEY_S)
+		printf("walk down!\n");
+	else if (keycode == KEY_LEFT || keycode == KEY_A)
+		printf("walk left!\n");
+	else if (keycode == KEY_RIGHT || keycode == KEY_D)
+		printf("walk right!\n");
+	else if (keycode == KEY_ESC || keycode == KEY_Q)
+	{
+		mlx_destroy_window(init->mlx, init->win);
+		exit(0);
+	}
+	else
+		printf("pressed any key\n");
 	return (0);
 }
 
-int	ft_close(int keycode, t_init *init)
-{
-	mlx_destroy_window(init->mlx, init->win);
-	return (0);
-}
 
 int	main(void)
 {
@@ -117,8 +127,7 @@ int	main(void)
 
 	mlx_put_image_to_window(init->mlx, init->win, ghost->img, 0, 0);
 	mlx_put_image_to_window(init->mlx, init->win, ghost->img, 100, 100);
-	//mlx_hook(init.win, key_hook, &init);
-	mlx_key_hook(win, ft_close, &init);
-	mlx_loop(mlx);
+    mlx_hook(init->win, 2, 1L<<00, key_hook, init);
+	mlx_loop(init->mlx);
 	return (0);
 }
