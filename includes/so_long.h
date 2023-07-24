@@ -6,12 +6,15 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/24 13:43:18 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/24 15:27:40 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minilibx-linux/mlx.h"
+#include "../ft_printf/ft_printf.h"
 #include <stdlib.h>
+#include <X11/keysym.h>
+#include <X11/X.h>
 
 typedef struct s_data {
 	void	*img;
@@ -28,7 +31,7 @@ typedef struct s_sprite {
 	char	*relative_path;
 }				t_sprite;
 
-typedef struct s_init {
+typedef struct s_init {	
 	void	*mlx;
 	void	*win;
 }				t_init;
