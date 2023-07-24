@@ -6,13 +6,13 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/24 13:42:33 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/24 15:29:07 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_sprite	*ft_lstimgnew(void *content)
+t_sprite	*ft_lstimgnew(char *content)
 {
 	t_sprite	*tmp;
 
@@ -21,18 +21,20 @@ t_sprite	*ft_lstimgnew(void *content)
 	{
 		tmp->relative_path = content;
 		tmp->img = NULL;
+		tmp->width = 0;
+		tmp->height = 0;
 	}
 	return (tmp);
 }
 
-t_init	*ft_lstinitnew(void *content)
+t_init	*ft_lstinitnew(void *mlx)
 {
 	t_init	*tmp;
 
 	tmp = malloc(sizeof(t_init));
 	if (tmp)
 	{
-		tmp->mlx = content;
+		tmp->mlx = mlx;
 		tmp->win = NULL;
 	}
 	return (tmp);
@@ -69,28 +71,54 @@ int	color_map_1(void *mlx, void *win, int w, int h)
 	return (0);
 }
 
-int	close(void *mlx, void *win)
+int	key_hook(int keycode, t_init *vars)
 {
-	mlx_destroy_window(mlx, win);
+	printf("Hello from key_hook!\n");
+	return (0);
+}
+
+int	ft_close(int keycode, t_init *init)
+{
+	mlx_destroy_window(init->mlx, init->win);
 	return (0);
 }
 
 int	main(void)
 {
 	void		*mlx;
-	void		*mlx_win;
+	void		*win;
+	void		*img;
 	t_sprite	*ghost;
 	t_init		*init;
-	char		spritepath[] = "./sprites/ghost.xpm";
-	
-	ghost = ft_lstimgnew(spritepath);
+	// char		*spritepath = "./sprites/ghost.xpm";
+	// ghost = ft_lstimgnew(spritepath);
+	ghost = ft_lstimgnew("./sprites/ghost.xpm");
 	mlx = mlx_init();
-	//init = ft_lstinitnew(mlx);
-	mlx_win = mlx_new_window(mlx, WIN_X, WIN_Y, "so_long");
-	ghost->img = mlx_xpm_file_to_image(mlx, ghost->relative_path, &ghost->width, &ghost->height);
-	mlx_put_image_to_window(mlx, mlx_win, ghost->img, 0, 0);
-	mlx_put_image_to_window(mlx, mlx_win, ghost->img, 100, 100);
-	//mlx_key_hook(mlx_win, close, &init);
+	if (!mlx)
+	{
+		ft_printf("mlx creation error!\n");
+		return (0);
+	}
+	init = ft_lstinitnew(mlx);
+	win = mlx_new_window(mlx, WIN_X, WIN_Y, "so_long");
+	init->win = win;
+	if (!win)
+	{
+		ft_printf("win creation error!\n");
+		return (0);
+	}
+	img = mlx_xpm_file_to_image(mlx, ghost->relative_path, &ghost->width, &ghost->height);
+	ghost->img = img;
+	if (!img)
+	{
+		ft_printf("sprite creation error!\n");
+		return (0);
+	}
+
+	mlx_put_image_to_window(init->mlx, init->win, ghost->img, 0, 0);
+	mlx_put_image_to_window(init->mlx, init->win, ghost->img, 100, 100);
+	//mlx_hook(init.win, key_hook, &init);
+	mlx_key_hook(win, ft_close, &init);
 	mlx_loop(mlx);
 	return (0);
 }
