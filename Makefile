@@ -55,7 +55,7 @@ clean:
 fclean: clean
 	@echo "$(BLUE)Deleting $(NAME) $(RESET)"
 	@rm -f $(NAME)
-	@rm -f $(LIBFT)
+	@make -C $(LIBFT_DIR) fclean --no-print-directory
 	@make -C $(MLX_DIR) clean --no-print-directory 2> /dev/null > /dev/null
 
 re: fclean all
