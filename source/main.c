@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/24 20:13:53 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/24 21:10:47 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,20 @@ int	main(void)
 	void		*win;
 	void		*img;
 	t_sprite	*ghost;
+	t_sprite	*ground;
 	t_init		*init;
 
 	ghost = ft_lstimgnew("./sprites/ghost.xpm");
+	ground = ft_lstimgnew("./sprites/ground.xpm");
+	ground->posx = 0;
+	ground->posy = 0;
 	ghost->posx = 48;
 	ghost->posy = 48;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
 	mlx = mlx_init();
 	if (!mlx)
 	{
@@ -101,14 +110,30 @@ int	main(void)
 		return (0);
 	}
 	ghost->img = mlx_xpm_file_to_image(mlx, ghost->relative_path, &ghost->width, &ghost->height);
+	ground->img = mlx_xpm_file_to_image(mlx, ground->relative_path, &ground->width, &ground->height);
 	if (!ghost->img)
 	{
-		ft_printf("sprite creation error!\n");
+		ft_printf("sprite ghost creation error!\n");
+		return (0);
+	}
+	if (!ground->img)
+	{
+		ft_printf("sprite ground creation error!\n");
 		return (0);
 	}
 	init->sprite = ghost;
-	mlx_put_image_to_window(init->mlx, init->win, ghost->img, 0, 0);
-	mlx_put_image_to_window(init->mlx, init->win, ghost->img, 100, 100);
+	while (i <= WIN_X - ground->width)
+	{
+		while (j <= WIN_Y - ground->height)
+		{
+			mlx_put_image_to_window(init->mlx, init->win, ground->img, i, j);
+			j += 48;
+		}
+		j = 0;
+		i += 48;
+	}
+	//mlx_put_image_to_window(init->mlx, init->win, ghost->img, 0, 0);
+	//mlx_put_image_to_window(init->mlx, init->win, ghost->img, 100, 100);
 	mlx_hook(init->win, 2, 1L << 00, key_hook, init);
 	mlx_loop(init->mlx);
 	return (0);
