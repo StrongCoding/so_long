@@ -6,15 +6,18 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/24 15:27:40 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/24 19:27:06 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx-linux/mlx.h"
-#include "../ft_printf/ft_printf.h"
-#include <stdlib.h>
-#include <X11/keysym.h>
-#include <X11/X.h>
+#ifndef SO_LONG_H
+# define SO_LONG_H
+
+# include "../minilibx-linux/mlx.h"
+# include "../ft_printf/ft_printf.h"
+# include <stdlib.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 typedef struct s_data {
 	void	*img;
@@ -36,5 +39,26 @@ typedef struct s_init {
 	void	*win;
 }				t_init;
 
-#define WIN_X 800
-#define WIN_Y 600
+# define WIN_X 800
+# define WIN_Y 600
+
+# define WALL		'1'
+# define FLOOR		'0'
+# define COINS		'C'
+# define PLAYER		'P'
+# define MAP_EXIT	'E'
+
+# define KEY_W		119
+# define KEY_A		97
+# define KEY_S		115
+# define KEY_D		100
+
+# define KEY_UP		65362
+# define KEY_LEFT	65361
+# define KEY_RIGHT	65363
+# define KEY_DOWN	65364
+
+# define KEY_Q		113
+# define KEY_ESC	65307
+
+#endif
