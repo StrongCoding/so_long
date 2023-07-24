@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/24 19:27:06 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/24 20:19:38 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,8 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 
-typedef struct s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
-typedef struct s_sprite {
-	void	*img;
-	int		width;
-	int		height;
-	char	*relative_path;
-}				t_sprite;
-
-typedef struct s_init {	
-	void	*mlx;
-	void	*win;
-}				t_init;
-
-# define WIN_X 800
-# define WIN_Y 600
+# define WIN_X		672
+# define WIN_Y		480
 
 # define WALL		'1'
 # define FLOOR		'0'
@@ -60,5 +40,30 @@ typedef struct s_init {
 
 # define KEY_Q		113
 # define KEY_ESC	65307
+
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
+typedef struct s_sprite {
+	void	*img;
+	int		width;
+	int		height;
+	char	*relative_path;
+	int		posx;
+	int		posy;
+}				t_sprite;
+
+typedef struct s_init {	
+	void		*mlx;
+	void		*win;
+	t_sprite	*sprite;
+}				t_init;
+
+
 
 #endif
