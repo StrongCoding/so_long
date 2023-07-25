@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/25 11:02:19 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/25 11:12:02 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define WALL		49
 # define FLOOR		48
-# define COINS		67
+# define COIN		67
 # define PLAYER		80
 # define MAP_EXIT	69
 
