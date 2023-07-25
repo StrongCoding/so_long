@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/25 21:13:22 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/25 21:27:41 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ t_init	*ft_lstinitnew(void *mlx)
 		tmp->wall = NULL;
 		tmp->coin = NULL;
 		tmp->exit = NULL;
+		tmp->x = 0;
+		tmp->y = 0;
 	}
 	return (tmp);
 }
@@ -87,8 +89,8 @@ int	main(void)
 		return (0);
 	}
 	init = ft_lstinitnew(mlx);
-	map = ft_parse_map("./maps/map2.ber", ft_get_rows("./maps/map2.ber"), init);
 	// map = ft_parse_map("./maps/map2.ber", ft_get_rows("./maps/map2.ber"), init);
+	map = ft_parse_map("./maps/bigmap.ber", ft_get_rows("./maps/bigmap.ber"), init);
 	init->ghost = ft_lstimgnew("./sprites/ghost.xpm");
 	init->ground = ft_lstimgnew("./sprites/ground.xpm");
 	init->wall = ft_lstimgnew("./sprites/wall.xpm");
@@ -120,6 +122,7 @@ int	main(void)
 	printf("now comes the render map\n");
 	if (!map)
 		return (0);
+	ft_render_map(map, init);
 	printf("now comes the hook\n");
 	mlx_hook(init->win, 2, 1L << 00, key_hook, init);
 	mlx_loop(init->mlx);
