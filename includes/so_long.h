@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/25 09:29:55 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/25 11:02:19 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 # define WIN_X		672
 # define WIN_Y		480
 
-# define WALL		'1'
-# define FLOOR		'0'
-# define COINS		'C'
-# define PLAYER		'P'
-# define MAP_EXIT	'E'
+# define WALL		49
+# define FLOOR		48
+# define COINS		67
+# define PLAYER		80
+# define MAP_EXIT	69
 
 # define KEY_W		119
 # define KEY_A		97
@@ -64,6 +64,6 @@ typedef struct s_init {
 	t_sprite	*sprite;
 }				t_init;
 
-
+char	**ft_parse_map(char *file, int rows);
 
 #endif
