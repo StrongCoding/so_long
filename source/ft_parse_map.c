@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/25 10:59:58 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/25 11:13:34 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,20 @@ static int	ft_get_rows(char *file)
 	free(row);
 	close(fd);
 	return (count_rows);
+}
+
+//returns 1 if map is valid
+int	ft_check_map(char **map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map[++i])
+		while (map[i][j] != NULL && map[i][j] != '\n')
+			if (map[i][j] == WALL || map[i][j] == FLOOR || map[i][j] == COIN || map[i][j] == PLAYER || map[i][j] == MAP_EXIT)
+				return (0);
+	return (1);
 }
 
 // return 2D array, every line ends with \n or \0
