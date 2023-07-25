@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/24 21:10:47 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/25 21:13:22 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,15 @@ t_init	*ft_lstinitnew(void *mlx)
 	{
 		tmp->mlx = mlx;
 		tmp->win = NULL;
+		tmp->win_height = 0;
+		tmp->win_width = 0;
+		tmp->ghost = NULL;
+		tmp->ground = NULL;
+		tmp->wall = NULL;
+		tmp->coin = NULL;
+		tmp->exit = NULL;
 	}
 	return (tmp);
-}
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
 }
 
 int	ft_move_right(t_init *init, t_sprite *ghost, int *posx, int *posy)
@@ -64,7 +63,8 @@ int	key_hook(int keycode, t_init *init)
 	else if (keycode == KEY_LEFT || keycode == KEY_A)
 		printf("walk left!\n");
 	else if (keycode == KEY_RIGHT || keycode == KEY_D)
-		ft_move_right(init, init->sprite, &init->sprite->posx, &init->sprite->posy);
+		printf("walk right!\n");
+		//ft_move_right(init, init->sprite, &init->sprite->posx, &init->sprite->posy);
 	else if (keycode == KEY_ESC || keycode == KEY_Q)
 	{
 		mlx_destroy_window(init->mlx, init->win);
@@ -74,27 +74,12 @@ int	key_hook(int keycode, t_init *init)
 		printf("pressed any key\n");
 	return (0);
 }
-
 int	main(void)
 {
 	void		*mlx;
-	void		*win;
-	void		*img;
-	t_sprite	*ghost;
-	t_sprite	*ground;
 	t_init		*init;
+	char		**map;
 
-	ghost = ft_lstimgnew("./sprites/ghost.xpm");
-	ground = ft_lstimgnew("./sprites/ground.xpm");
-	ground->posx = 0;
-	ground->posy = 0;
-	ghost->posx = 48;
-	ghost->posy = 48;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
 	mlx = mlx_init();
 	if (!mlx)
 	{
@@ -102,38 +87,40 @@ int	main(void)
 		return (0);
 	}
 	init = ft_lstinitnew(mlx);
-	init->win = mlx_new_window(mlx, WIN_X, WIN_Y, "so_long");
-	//init->win = win;
+	map = ft_parse_map("./maps/map2.ber", ft_get_rows("./maps/map2.ber"), init);
+	// map = ft_parse_map("./maps/map2.ber", ft_get_rows("./maps/map2.ber"), init);
+	init->ghost = ft_lstimgnew("./sprites/ghost.xpm");
+	init->ground = ft_lstimgnew("./sprites/ground.xpm");
+	init->wall = ft_lstimgnew("./sprites/wall.xpm");
+	init->coin = ft_lstimgnew("./sprites/coin.xpm");
+	init->exit = ft_lstimgnew("./sprites/exit.xpm");
+	init->win = mlx_new_window(mlx, init->win_width, init->win_height, "so_long");
+	printf("width: %i height: %i\n", init->win_width, init->win_height);
 	if (!init->win)
 	{
 		ft_printf("win creation error!\n");
 		return (0);
 	}
-	ghost->img = mlx_xpm_file_to_image(mlx, ghost->relative_path, &ghost->width, &ghost->height);
-	ground->img = mlx_xpm_file_to_image(mlx, ground->relative_path, &ground->width, &ground->height);
-	if (!ghost->img)
+	printf("now comes the xpm to file\n");
+	init->ghost->img = mlx_xpm_file_to_image(init->mlx, init->ghost->relative_path, & init->ghost->width, & init->ghost->height);
+	init->ground->img = mlx_xpm_file_to_image( init->mlx,  init->ground->relative_path, & init->ground->width, & init->ground->height);
+	init->wall->img = mlx_xpm_file_to_image( init->mlx,  init->wall->relative_path, & init->wall->width, & init->wall->height);
+	init->coin->img = mlx_xpm_file_to_image( init->mlx,  init->coin->relative_path, & init->coin->width, & init->coin->height);
+	init->exit->img = mlx_xpm_file_to_image( init->mlx,  init->exit->relative_path, & init->exit->width, & init->exit->height);
+	if (!init->ghost->img)
 	{
 		ft_printf("sprite ghost creation error!\n");
 		return (0);
 	}
-	if (!ground->img)
+	if (!init->ground->img)
 	{
 		ft_printf("sprite ground creation error!\n");
 		return (0);
 	}
-	init->sprite = ghost;
-	while (i <= WIN_X - ground->width)
-	{
-		while (j <= WIN_Y - ground->height)
-		{
-			mlx_put_image_to_window(init->mlx, init->win, ground->img, i, j);
-			j += 48;
-		}
-		j = 0;
-		i += 48;
-	}
-	//mlx_put_image_to_window(init->mlx, init->win, ghost->img, 0, 0);
-	//mlx_put_image_to_window(init->mlx, init->win, ghost->img, 100, 100);
+	printf("now comes the render map\n");
+	if (!map)
+		return (0);
+	printf("now comes the hook\n");
 	mlx_hook(init->win, 2, 1L << 00, key_hook, init);
 	mlx_loop(init->mlx);
 	return (0);
