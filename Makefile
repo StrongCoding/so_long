@@ -1,14 +1,11 @@
-LIBX11 = /usr/lib/x86_64-linux-gnu/libX11.so
-LIBXEXT = /usr/lib/x86_64-linux-gnu/libXext.so
-LIBZ = /usr/lib/x86_64-linux-gnu/libz.so
-LIBM = /usr/lib/x86_64-linux-gnu/libm.so	
-
 SRC_DIR 	=	./source
 OBJ_DIR 	=	./objects
 INC_DIR		= 	./includes
 
 FILES 		=	main \
-				ft_parse_map
+				ft_parse_map \
+				ft_render_map \
+				ft_strlen_s
 
 SRCS 		= 	$(addsuffix .c, $(addprefix $(SRC_DIR)/, $(FILES)))
 OBJS 		= 	$(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(FILES)))
@@ -27,37 +24,27 @@ MLX = ./minilibx-linux/libmlx.a
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	@echo "$(YELLOW)Compiling [$(NAME)]...$(RESET)"
-	@cc $(FLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX)
-	@echo "$(GREEN)Finished [$(NAME)]$(RESET)"
+	cc $(FLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX)
 
 $(MLX):
-	@echo "$(YELLOW)Compiling [$(MLX)]...$(RESET)"
-	@make -C $(MLX_DIR)
-	@echo "$(GREEN)Finished [$(MLX)]$(RESET)"
+	make -C $(MLX_DIR)
 
 $(LIBFT):
-	@make -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	@echo "$(YELLOW)Compiling [$@]...$(RESET)"
-	@cc $(FLAGS) $(INC) -o $@ -c $<
-	@printf "$(UP)$(CUT)"
-	@echo "$(GREEN)Finished [$@]$(RESET)"
-	@printf "$(UP)$(CUT)"
+	mkdir -p $(OBJ_DIR)
+	cc $(FLAGS) $(INC) -o $@ -c $<
 
 clean:
-	@echo "$(BLUE)[$(NAME)] Deleting all objects $(RESET)"
-	@rm -rf $(OBJ_DIR)
-	@make -C $(LIBFT_DIR) clean --no-print-directory
-	@make -C $(MLX_DIR) clean --no-print-directory 2> /dev/null > /dev/null
+	rm -rf $(OBJ_DIR)
+	make -C $(LIBFT_DIR) clean
+	make -C $(MLX_DIR) clean
 
 fclean: clean
-	@echo "$(BLUE)Deleting $(NAME) $(RESET)"
-	@rm -f $(NAME)
-	@make -C $(LIBFT_DIR) fclean --no-print-directory
-	@make -C $(MLX_DIR) clean --no-print-directory 2> /dev/null > /dev/null
+	rm -f $(NAME)
+	make -C $(LIBFT_DIR) fclean
+	make -C $(MLX_DIR) clean
 
 re: fclean all
 
