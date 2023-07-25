@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/25 11:12:02 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/25 20:03:26 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 //# include <X11/keysym.h>
 //# include <X11/X.h>
 
-# define WIN_X		672
-# define WIN_Y		480
+# define WIN_X		624
+# define WIN_Y		240
 
 # define WALL		49
-# define FLOOR		48
+# define GROUND		48
 # define COIN		67
-# define PLAYER		80
-# define MAP_EXIT	69
+# define GHOST		80
+# define EXIT		69
 
 # define KEY_W		119
 # define KEY_A		97
@@ -41,29 +41,30 @@
 # define KEY_Q		113
 # define KEY_ESC	65307
 
-typedef struct s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
 typedef struct s_sprite {
 	void	*img;
 	int		width;
 	int		height;
 	char	*relative_path;
-	int		posx;
-	int		posy;
+	// int		posx;
+	// int		posy;
 }				t_sprite;
 
 typedef struct s_init {	
 	void		*mlx;
 	void		*win;
-	t_sprite	*sprite;
+	int			win_height;
+	int			win_width;
+	t_sprite	*ghost;
+	t_sprite	*ground;
+	t_sprite	*wall;
+	t_sprite	*coin;
+	t_sprite	*exit;
 }				t_init;
 
-char	**ft_parse_map(char *file, int rows);
+char	**ft_parse_map(char *file, int rows, t_init *init);
+size_t	ft_strlen_s(const char *s);
+int		ft_get_rows(char *file);
+void	ft_render_map(char **map, t_init *init);
 
 #endif
