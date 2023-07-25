@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/25 20:03:26 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/25 21:25:01 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_init {
 	void		*win;
 	int			win_height;
 	int			win_width;
+	int			x;
+	int			y;
 	t_sprite	*ghost;
 	t_sprite	*ground;
 	t_sprite	*wall;
