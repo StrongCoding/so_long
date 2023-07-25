@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/24 20:19:38 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/25 09:29:55 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "../minilibx-linux/mlx.h"
 # include "../ft_printf/ft_printf.h"
 # include <stdlib.h>
-# include <X11/keysym.h>
-# include <X11/X.h>
+//# include <X11/keysym.h>
+//# include <X11/X.h>
 
 # define WIN_X		672
 # define WIN_Y		480
