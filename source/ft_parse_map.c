@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/25 11:13:34 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/25 15:04:17 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,25 @@ static int	ft_get_rows(char *file)
 	return (count_rows);
 }
 
-//returns 1 if map is valid
+//returns 1 if all chars in map are valid
 int	ft_check_map(char **map)
 {
 	int	i;
 	int	j;
 
 	i = -1;
+	j = 0;
 	while (map[++i])
-		while (map[i][j] != NULL && map[i][j] != '\n')
-			if (map[i][j] == WALL || map[i][j] == FLOOR || map[i][j] == COIN || map[i][j] == PLAYER || map[i][j] == MAP_EXIT)
+	{
+		while (map[i] != NULL && map[i][j] != '\n' && map[i][j] != '\0')
+		{
+			if (!(map[i][j] == WALL || map[i][j] == FLOOR || map[i][j] == COIN
+				|| map[i][j] == PLAYER || map[i][j] == MAP_EXIT))
 				return (0);
+			j++;
+		}
+		j = 0;
+	}
 	return (1);
 }
 
@@ -71,7 +79,10 @@ char	**ft_parse_map(char *file, int rows)
 	while (++i <= rows)
 		map[i] = get_next_line(fd);
 	close(fd);
-	return (map);
+	printf("check map\n");
+	if (ft_check_map(map))
+		return (map);
+	return (NULL);
 }
 
 int	main(void)
@@ -83,6 +94,9 @@ int	main(void)
 	printf("count rows:%i\n", i);
 	string = ft_parse_map("../maps/map1.ber", i);
 	i = -1;
-	while (string[++i])
-		printf("string[%i]: %s\n", i, string[i]);
+	if (string)
+		while (string[++i])
+			printf("string[%i]: %s\n", i, string[i]);
+	else
+		ft_printf("Map Error!\n");
 }
