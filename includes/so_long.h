@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/26 10:16:47 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/26 11:26:33 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "../minilibx-linux/mlx.h"
 # include "../ft_printf/ft_printf.h"
 # include <stdlib.h>
-//# include <X11/keysym.h>
-//# include <X11/X.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 # define WALL		49
 # define GROUND		48
