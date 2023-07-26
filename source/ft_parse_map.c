@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/25 21:26:28 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/26 09:31:06 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,14 @@ int	ft_get_rows(char *file)
 	return (count_rows);
 }
 
-//returns 1 if all chars in map are valid
-int	ft_check_map(char **map)
+//returns 1 if all chars in map are valid and only 1 ghost
+int	ft_check_chars(char **map, t_init *init)
 {
 	int	i;
 	int	j;
+	int	p;
 
+	p = 0;
 	i = -1;
 	j = 0;
 	while (map[++i])
@@ -71,12 +73,22 @@ int	ft_check_map(char **map)
 		{
 			if (!(map[i][j] == WALL || map[i][j] == GROUND || map[i][j] == COIN
 				|| map[i][j] == GHOST || map[i][j] == EXIT))
-				return (0);
-			j++;
+				return (-1);
+			if (map[i][j++] == GHOST)
+				p++;
 		}
 		j = 0;
 	}
-	if (ft_check_row_lengths(map) > 0)
+	if (!(p == 1))
+		return (-1);
+	return (1);
+}
+
+//returns 1 if all chars in map are valid and all rows have same length
+//error return -1 and give start position player
+int	ft_check_map(char **map, t_init *init)
+{
+	if (ft_check_row_lengths(map) > 0 && ft_check_chars(map, init) > 0)
 		return (1);
 	else
 		return (-1);
@@ -104,7 +116,7 @@ char	**ft_parse_map(char *file, int rows, t_init *init)
 	printf("check map\n");
 	init->win_height = rows * 48;
 	init->win_width = ft_check_row_lengths(map) * 48;
-	if (ft_check_map(map) > 0)
+	if (ft_check_map(map, init) > 0)
 		return (map);
 	return (NULL);
 }
