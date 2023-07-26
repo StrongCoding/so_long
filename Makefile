@@ -5,7 +5,9 @@ INC_DIR		= 	./includes
 FILES 		=	main \
 				ft_parse_map \
 				ft_render_map \
-				ft_strlen_s
+				ft_strlen_s \
+				map_utils \
+				movements
 
 SRCS 		= 	$(addsuffix .c, $(addprefix $(SRC_DIR)/, $(FILES)))
 OBJS 		= 	$(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(FILES)))
