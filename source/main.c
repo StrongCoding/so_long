@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/26 11:09:19 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/26 12:56:54 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,12 @@ int	key_hook_destroy(t_init *init)
 	exit(0);
 }
 
+int	expose_hook(t_init *init)
+{
+	printf("exposed!\n");
+	ft_render_map(init->map, init);
+}
+
 int	main(void)
 {
 	void		*mlx;
@@ -91,8 +97,8 @@ int	main(void)
 		return (0);
 	}
 	init = ft_lstinitnew(mlx);
-	map = ft_parse_map("./maps/map2.ber", ft_get_rows("./maps/map2.ber"), init);
-	//map = ft_parse_map("./maps/bigmap.ber", ft_get_rows("./maps/bigmap.ber"), init);
+	//map = ft_parse_map("./maps/map2.ber", ft_get_rows("./maps/map2.ber"), init);
+	map = ft_parse_map("./maps/bigmap.ber", ft_get_rows("./maps/bigmap.ber"), init);
 	init->ghost = ft_lstimgnew("./sprites/ghost.xpm");
 	init->ground = ft_lstimgnew("./sprites/ground.xpm");
 	init->wall = ft_lstimgnew("./sprites/wall.xpm");
@@ -131,8 +137,9 @@ int	main(void)
 	ft_init_player_coord(map, init);
 	ft_render_map(map, init);
 	printf("now comes the hook\n");
-	mlx_hook(init->win, 2, 1L << 00, key_hook, init);
-	mlx_hook(init->win, 17, 0L, key_hook_destroy, init);
+	mlx_hook(init->win, KeyPress, KeyPressMask, key_hook, init);
+	mlx_hook(init->win, DestroyNotify, NoEventMask, key_hook_destroy, init);
+	mlx_hook(init->win, Expose, ExposureMask, expose_hook, init);
 	mlx_loop(init->mlx);
 	return (0);
 }
