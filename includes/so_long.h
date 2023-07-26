@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/25 21:25:01 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/26 10:16:47 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include <stdlib.h>
 //# include <X11/keysym.h>
 //# include <X11/X.h>
-
-# define WIN_X		624
-# define WIN_Y		240
 
 # define WALL		49
 # define GROUND		48
@@ -46,8 +43,6 @@ typedef struct s_sprite {
 	int		width;
 	int		height;
 	char	*relative_path;
-	// int		posx;
-	// int		posy;
 }				t_sprite;
 
 typedef struct s_init {	
@@ -62,11 +57,20 @@ typedef struct s_init {
 	t_sprite	*wall;
 	t_sprite	*coin;
 	t_sprite	*exit;
+	int			collected_coins;
+	int			coins;
+	char		**map;
 }				t_init;
 
 char	**ft_parse_map(char *file, int rows, t_init *init);
 size_t	ft_strlen_s(const char *s);
 int		ft_get_rows(char *file);
 void	ft_render_map(char **map, t_init *init);
+void	ft_init_player_coord(char **map, t_init *init);
+int		ft_move_right(t_init *init);
+int		ft_move_left(t_init *init);
+int		ft_move_up(t_init *init);
+int		ft_move_down(t_init *init);
+int		ft_check_movement(char **map, t_init *init, int x, int y);
 
 #endif
