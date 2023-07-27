@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 17:37:49 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 18:14:54 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,12 @@ typedef struct s_init {
 	t_sprite	*wall;
 	t_sprite	*coin;
 	t_sprite	*exit;
+	t_sprite	*cloud;
 	int			collected_coins;
 	int			coins;
 	char		**map;
 	int			error;
+	int			movements;
 }				t_init;
 
 void		ft_parse_map(char *file, int rows, t_init *init);
@@ -81,5 +83,6 @@ t_init		*ft_init(char *argv);
 t_init		*ft_newinit(void *mlx);
 t_sprite	*ft_newsprite(char *content);
 int			ft_check_path(char **map);
+int			create_trgb(int t, int r, int g, int b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 09:48:53 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 11:34:48 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 18:16:57 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int	ft_move_right(t_init *init)
 		init->ground->img, init->x, init->y);
 	init->map[init->y / 48][init->x / 48] = GROUND;
 	init->x += 48;
+	init->movements += 1;
+	mlx_put_image_to_window(init->mlx, init->win,
+		init->cloud->img, 10, 10);
+	mlx_string_put(init->mlx, init->win, 30, 15, create_trgb(0,255,122,122), "Movements:");
+	mlx_string_put(init->mlx, init->win, 90, 15, create_trgb(0,255,122,122), ft_itoa(init->movements));
 	init->map[init->y / 48][init->x / 48] = GHOST;
 	mlx_put_image_to_window(init->mlx, init->win,
 		init->ghost->img, init->x, init->y);
@@ -34,6 +39,7 @@ int	ft_move_left(t_init *init)
 		init->ground->img, init->x, init->y);
 	init->map[init->y / 48][init->x / 48] = GROUND;
 	init->x -= 48;
+	init->movements += 1;
 	init->map[init->y / 48][init->x / 48] = GHOST;
 	mlx_put_image_to_window(init->mlx, init->win,
 		init->ghost->img, init->x, init->y);
@@ -48,6 +54,7 @@ int	ft_move_up(t_init *init)
 		init->ground->img, init->x, init->y);
 	init->map[init->y / 48][init->x / 48] = GROUND;
 	init->y -= 48;
+	init->movements += 1;
 	init->map[init->y / 48][init->x / 48] = GHOST;
 	mlx_put_image_to_window(init->mlx, init->win,
 		init->ghost->img, init->x, init->y);
@@ -62,6 +69,7 @@ int	ft_move_down(t_init *init)
 		init->ground->img, init->x, init->y);
 	init->map[init->y / 48][init->x / 48] = GROUND;
 	init->y += 48;
+	init->movements += 1;
 	init->map[init->y / 48][init->x / 48] = GHOST;
 	mlx_put_image_to_window(init->mlx, init->win,
 		init->ghost->img, init->x, init->y);
@@ -81,8 +89,8 @@ int	ft_check_movement(char **map, t_init *init, int x, int y)
 	}
 	if (map[(y / 48)][x / 48] == EXIT && init->collected_coins == init->coins)
 	{
-		printf("you won!\n");
-		return (1);
+		printf("You won!\n");
+		return (-1);
 	}
 	else
 		return (0);

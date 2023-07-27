@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:06:06 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 15:37:51 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 17:54:48 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_init	*ft_newinit(void *mlx)
 		tmp->coins = 0;
 		tmp->map = NULL;
 		tmp->error = 0;
+		tmp->movements = 0;
 	}
 	return (tmp);
 }
@@ -76,4 +77,10 @@ void	ft_close_programm(t_init *init)
 	}
 	ft_printf("Error\n");
 	exit(1);
+}
+
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
 }

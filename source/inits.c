@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:35:42 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 17:12:17 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 18:16:12 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ int	ft_init_img(t_init *init)
 	init->ghost->img = mlx_xpm_file_to_image(init->mlx,
 			init->ghost->relative_path, &init->ghost->width,
 			&init->ghost->height);
+	init->cloud->img = mlx_xpm_file_to_image(init->mlx,
+			init->cloud->relative_path, &init->cloud->width,
+			&init->cloud->height);
 	init->ground->img = mlx_xpm_file_to_image(init->mlx,
 			init->ground->relative_path, &init->ground->width,
 			&init->ground->height);
@@ -31,7 +34,7 @@ int	ft_init_img(t_init *init)
 			&init->exit->height);
 	if (init->exit->img != NULL && init->coin->img != NULL && 
 		init->wall->img != NULL && init->ground->img != NULL && 
-		init->ghost->img != NULL)
+		init->ghost->img != NULL && init->cloud->img != NULL)
 		return (1);
 	return (-1);
 }
@@ -43,8 +46,9 @@ int	ft_init_sprites(t_init *init)
 	init->wall = ft_newsprite("./sprites/wall.xpm");
 	init->coin = ft_newsprite("./sprites/coin.xpm");
 	init->exit = ft_newsprite("./sprites/exit.xpm");
+	init->cloud = ft_newsprite("./sprites/cloud_back_move.xpm");
 	if (init->exit != NULL && init->coin != NULL && init->wall != NULL && 
-		init->ground != NULL && init->ghost != NULL)
+		init->ground != NULL && init->ghost != NULL && init->cloud != NULL)
 		if (ft_init_img(init) > 0)
 			return (1);
 	return (-1);
