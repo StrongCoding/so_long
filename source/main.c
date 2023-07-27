@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 13:37:43 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 14:33:05 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,12 @@ int	main(int argc, char **argv)
 	if (ft_check_argv(argv) < 1)
 		return (1);
 	init = ft_init(argv[1]);
-	if (init->map == NULL)
+	if (init != NULL && !(init->error))
 	{
-		printf("Map error!\n");
-		return (1);
+		mlx_hook(init->win, KeyPress, KeyPressMask, key_hook, init);
+		mlx_hook(init->win, DestroyNotify, NoEventMask, key_hook_destroy, init);
+		mlx_hook(init->win, Expose, ExposureMask, expose_hook, init);
+		mlx_loop(init->mlx);
 	}
-	mlx_hook(init->win, KeyPress, KeyPressMask, key_hook, init);
-	mlx_hook(init->win, DestroyNotify, NoEventMask, key_hook_destroy, init);
-	mlx_hook(init->win, Expose, ExposureMask, expose_hook, init);
-	mlx_loop(init->mlx);
 	return (0);
 }
