@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 16:07:23 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/25 21:29:39 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 13:32:33 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_render_row(char *row, t_init *init, int y)
 
 	i = 0;
 	x = 0;
-	while (row[i] && !(row[i] == '\0'))
+	printf("row %s\n", row);
+	while (row[i] && !(row[i] == '\n'))
 	{
 		if (row[i] == WALL)
 			mlx_put_image_to_window(init->mlx, init->win,
@@ -39,6 +40,7 @@ void	ft_render_row(char *row, t_init *init, int y)
 		i++;
 		x += 48;
 	}
+	printf("row done\n");
 }
 
 void	ft_render_map(char **map, t_init *init)
@@ -50,6 +52,7 @@ void	ft_render_map(char **map, t_init *init)
 	y = 0;
 	while (y < init->win_height)
 	{
+		printf("render row\n");
 		ft_render_row(map[i++], init, y);
 		y += 48;
 	}

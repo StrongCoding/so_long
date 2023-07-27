@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 09:49:20 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 13:17:51 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_get_rows(char *file)
 }
 
 //returns 1 if all chars in map are valid and only 1 ghost
-int	ft_check_chars(char **map, t_init *init)
+int	ft_check_chars(char **map)
 {
 	int	i;
 	int	j;
@@ -88,16 +88,16 @@ int	ft_check_chars(char **map, t_init *init)
 //error return -1 and give start position player
 int	ft_check_map(char **map, t_init *init)
 {
-	if (ft_check_row_lengths(map) < 0 && ft_check_chars(map, init) < 0)
+	if (ft_check_row_lengths(map) < 0 && ft_check_chars(map) < 0)
 		return (-1);
-	if (ft_check_map_border(map) < 0)
+	else if (ft_check_map_border(map) < 0)
 		return (-1);
 	else
 		return (1);
 }
 
 // return 2D array, every line ends with \n or \0
-char	**ft_parse_map(char *file, int rows, t_init *init)
+void	ft_parse_map(char *file, int rows, t_init *init)
 {
 	int		fd;
 	char	*row;
@@ -109,18 +109,21 @@ char	**ft_parse_map(char *file, int rows, t_init *init)
 	if (fd < 1)
 	{
 		ft_printf("Error file!\n");
-		return (NULL);
+		return ;
 	}
 	map = malloc((rows + 1) * sizeof(char *));
 	while (++i <= rows)
 		map[i] = get_next_line(fd);
+	map[++i] = NULL;
 	close(fd);
 	printf("check map\n");
 	init->win_height = rows * 48;
 	init->win_width = ft_check_row_lengths(map) * 48;
 	if (ft_check_map(map, init) > 0)
-		return (map);
-	return (NULL);
+	{
+		init->map = map;
+		printf("check map success\n");
+	}
 }
 
 // int	main(void)
