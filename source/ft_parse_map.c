@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 14:11:31 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 14:54:31 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	ft_check_row_lengths(char **map)
 	len = ft_strlen_s(map[i++]);
 	while (map[i])
 	{
+		printf("len: %i == ft_strlen_s(map[%i]):%zu\n", len, i, ft_strlen_s(map[i]));
 		if (!(len == ft_strlen_s(map[i++])))
 			return (-1);
 	}
-	printf("return len: %i\n", len);
 	return (len);
 }
 
@@ -88,9 +88,11 @@ int	ft_check_chars(char **map)
 //error return -1 and give start position player
 int	ft_check_map(char **map, t_init *init)
 {
-	if (ft_check_row_lengths(map) < 0 && ft_check_chars(map) < 0)
+	if (ft_check_row_lengths(map) < 0 || ft_check_chars(map) < 0)
 		return (-1);
 	else if (ft_check_map_border(map) < 0)
+		return (-1);
+	if (!(init->x && init->y))
 		return (-1);
 	else
 		return (1);
@@ -111,7 +113,6 @@ void	ft_parse_map(char *file, int rows, t_init *init)
 		ft_printf("Error file!\n");
 		return ;
 	}
-	printf("rows: %i", rows);
 	map = malloc((rows + 1) * sizeof(char *));
 	while (++i < rows)
 		map[i] = get_next_line(fd);
