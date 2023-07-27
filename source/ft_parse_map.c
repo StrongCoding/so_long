@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 13:17:51 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 14:05:45 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,11 @@ void	ft_parse_map(char *file, int rows, t_init *init)
 		ft_printf("Error file!\n");
 		return ;
 	}
+	printf("rows: %i", rows);
 	map = malloc((rows + 1) * sizeof(char *));
-	while (++i <= rows)
+	while (++i < rows)
 		map[i] = get_next_line(fd);
-	map[++i] = NULL;
+	map[i] = NULL;
 	close(fd);
 	printf("check map\n");
 	init->win_height = rows * 48;
