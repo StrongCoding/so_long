@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/26 12:56:54 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/26 18:23:48 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	key_hook(int keycode, t_init *init)
 		exit(0);
 	}
 	else
-		printf("collected coins: %i\n", init->collected_coins);
+		printf("keycode: %i collected coins: %i\n", keycode, init->collected_coins);
 	return (0);
 }
 
@@ -84,12 +84,17 @@ int	expose_hook(t_init *init)
 	ft_render_map(init->map, init);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	void		*mlx;
 	t_init		*init;
 	char		**map;
 
+	if (argc != 2)
+		return (1);
+	printf("check argv: %i\n", ft_check_argv(argv));
+	if (ft_check_argv(argv) < 1)
+		return (1);
 	mlx = mlx_init();
 	if (!mlx)
 	{
@@ -97,8 +102,13 @@ int	main(void)
 		return (0);
 	}
 	init = ft_lstinitnew(mlx);
-	//map = ft_parse_map("./maps/map2.ber", ft_get_rows("./maps/map2.ber"), init);
-	map = ft_parse_map("./maps/bigmap.ber", ft_get_rows("./maps/bigmap.ber"), init);
+	// map = ft_parse_map("./maps/bigmap.ber", ft_get_rows("./maps/bigmap.ber"), init);
+	map = ft_parse_map(argv[1], ft_get_rows(argv[1]), init);
+	if (!map)
+	{
+		printf("Map error!\n");
+		return (0);
+	}
 	init->ghost = ft_lstimgnew("./sprites/ghost.xpm");
 	init->ground = ft_lstimgnew("./sprites/ground.xpm");
 	init->wall = ft_lstimgnew("./sprites/wall.xpm");
@@ -128,11 +138,6 @@ int	main(void)
 		return (0);
 	}
 	printf("now comes the render map\n");
-	if (!map)
-	{
-		printf("Map error!\n");
-		return (0);
-	}
 	init->map = map;
 	ft_init_player_coord(map, init);
 	ft_render_map(map, init);
