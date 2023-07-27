@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 17:34:08 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 17:38:05 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,11 @@ int	ft_check_map(char **map, t_init *init)
 		ft_printf("Error\nMap is not sourrounded by walls!\n");
 		return (-1);
 	}
+	else if (ft_check_path(map) < 0)
+	{
+		ft_printf("Error\nGame not solveable!\n");
+		return (-1);
+	}
 	else
 		return (1);
 }
@@ -129,11 +134,7 @@ void	ft_parse_map(char *file, int rows, t_init *init)
 	i = -1;
 	fd = open(file, O_RDONLY);
 	if (fd < 1)
-	{
-		// ft_printf("Error\n");
-		// perror("");
 		return ;
-	}
 	map = malloc((rows + 1) * sizeof(char *));
 	while (++i < rows)
 		map[i] = get_next_line(fd);

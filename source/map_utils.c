@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 09:34:10 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 15:49:53 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 17:35:46 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,10 @@ int	ft_check_row_lengths(char **map)
 			return (-1);
 	}
 	return (len);
+}
+
+//check path
+int	ft_check_path(char **map)
+{
+	return (1);
 }

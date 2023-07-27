@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 14:25:23 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 17:37:49 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ t_init		*ft_newinit(void *mlx);
 t_init		*ft_init(char *argv);
 t_init		*ft_newinit(void *mlx);
 t_sprite	*ft_newsprite(char *content);
+int			ft_check_path(char **map);
 
 #endif
