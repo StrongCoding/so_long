@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 14:13:38 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 14:25:23 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_init {
 	int			collected_coins;
 	int			coins;
 	char		**map;
+	int			error;
 }				t_init;
 
 void		ft_parse_map(char *file, int rows, t_init *init);
