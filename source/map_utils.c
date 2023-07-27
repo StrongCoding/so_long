@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 09:34:10 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/26 10:41:52 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 10:06:49 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,35 @@ void	ft_init_player_coord(char **map, t_init *init)
 		}
 		j = 0;
 	}
+}
+
+//checks if map is sourrounded by walls
+int	ft_check_map_border(char **map)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	len = ft_check_row_lengths(map);
+	i = -1;
+	j = 0;
+	while (map[++i])
+	{
+		while (map[i] != NULL && map[i][j] != '\n' && map[i][j] != '\0')
+		{
+			if ((!(map[i][j] == WALL) && (i == 0 || map[i + 1] == NULL)))
+			{
+				printf("erste und letzte schlecht map[%i][%i] == %c)!\n", i, j, map[i][j]);
+				return (-1);
+			}
+			if (!(map[i][0] == WALL && map[i][len - 1] == WALL))
+			{
+				printf("mitte schlecht! map[%i][%i] == %c)!\n", i, j, map[i][j]);
+				return (-1);
+			}
+			j++;
+		}
+		j = 0;
+	}
+	return (1);
 }
