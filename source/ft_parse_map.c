@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 14:54:31 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 15:10:52 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_check_row_lengths(char **map)
 	len = ft_strlen_s(map[i++]);
 	while (map[i])
 	{
-		printf("len: %i == ft_strlen_s(map[%i]):%zu\n", len, i, ft_strlen_s(map[i]));
 		if (!(len == ft_strlen_s(map[i++])))
 			return (-1);
 	}
