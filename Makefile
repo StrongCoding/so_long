@@ -17,6 +17,7 @@ OBJS 		= 	$(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(FILES)))
 
 NAME		=	so_long
 #FLAGS		=	-Wall -Werror -Wextra -Ofast
+FLAGS		= 	-g -fsanitize=address
 MLX_FLAGS	=	-L/usr/X11/lib -lX11 -lXext -lm
 INC			=	-I $(INC_DIR) -I $(LIBFT_DIR) -I $(MLX_DIR) -I /usr/X11/include
 
