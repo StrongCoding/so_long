@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/26 09:31:06 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 09:49:20 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,12 @@ int	ft_check_chars(char **map, t_init *init)
 //error return -1 and give start position player
 int	ft_check_map(char **map, t_init *init)
 {
-	if (ft_check_row_lengths(map) > 0 && ft_check_chars(map, init) > 0)
-		return (1);
-	else
+	if (ft_check_row_lengths(map) < 0 && ft_check_chars(map, init) < 0)
 		return (-1);
+	if (ft_check_map_border(map) < 0)
+		return (-1);
+	else
+		return (1);
 }
 
 // return 2D array, every line ends with \n or \0
