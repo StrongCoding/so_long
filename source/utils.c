@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:06:06 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 14:26:27 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 15:37:51 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,29 @@ t_sprite	*ft_newsprite(char *content)
 		tmp->height = 0;
 	}
 	return (tmp);
+}
+
+void	ft_free_map(char **map)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_check_row_lengths(map);
+	while (i <= len)
+		free(map[i++]);
+	free(map);
+}
+
+void	ft_close_programm(t_init *init)
+{
+	if (init != NULL)
+	{
+		if (init->map != NULL)
+		{
+			ft_free_map(init->map);
+		}
+	}
+	ft_printf("Error\n");
+	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 14:33:05 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 17:11:17 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	key_hook_destroy(t_init *init)
 
 int	expose_hook(t_init *init)
 {
-	printf("exposed!\n");
 	ft_render_map(init->map, init);
 	return (1);
 }

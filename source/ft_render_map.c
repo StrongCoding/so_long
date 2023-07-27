@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 16:07:23 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 14:11:46 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 16:33:32 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	ft_render_map(char **map, t_init *init)
 	y = 0;
 	while (y < init->win_height)
 	{
-		printf("render row\n");
 		ft_render_row(map[i++], init, y);
 		y += 48;
 	}

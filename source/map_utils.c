@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 09:34:10 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 14:12:36 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 15:49:53 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,22 @@ int	ft_check_map_border(char **map)
 		j = 0;
 	}
 	return (1);
+}
+
+//check row lengths, if not all same return -1 else return the length for window
+int	ft_check_row_lengths(char **map)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	if (!map)
+		return (-1);
+	len = ft_strlen_s(map[i++]);
+	while (map[i])
+	{
+		if (!(len == ft_strlen_s(map[i++])))
+			return (-1);
+	}
+	return (len);
 }

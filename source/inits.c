@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:35:42 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 14:35:12 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 17:12:17 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,13 @@ int	ft_init_mlx_win(t_init *init)
 {
 	init->win = mlx_new_window(init->mlx, init->win_width,
 			init->win_height, "so_long");
-	printf("init done win\n");
 	if (!init->win)
 	{
-		ft_printf("win creation error!\n");
+		ft_printf("Error\nWindows creation failed!\n");
 		return (0);
 	}
 	ft_init_player_coord(init->map, init);
-	printf("init player done\n");
 	ft_render_map(init->map, init);
-	printf("render map done\n");
 	return (1);
 }
 
@@ -76,7 +73,7 @@ t_init	*ft_init(char *argv)
 	mlx = mlx_init();
 	if (!mlx)
 	{
-		ft_printf("mlx creation error!\n");
+		ft_printf("Error\nmlx initialization error!\n");
 		return (0);
 	}
 	init = ft_newinit(mlx);
@@ -84,12 +81,10 @@ t_init	*ft_init(char *argv)
 		return (NULL);
 	if (ft_init_sprites(init) < 0)
 		return (NULL);
-	printf("init map\n");
 	ft_parse_map(argv, ft_get_rows(argv), init);
 	if (init->map == NULL)
 		return (NULL);
-	printf("init win\n");
-	if (ft_init_mlx_win(init))
+	if (!ft_init_mlx_win(init))
 		return (NULL);
 	return (init);
 }
