@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/26 11:26:33 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 09:48:00 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,8 @@ int		ft_move_left(t_init *init);
 int		ft_move_up(t_init *init);
 int		ft_move_down(t_init *init);
 int		ft_check_movement(char **map, t_init *init, int x, int y);
+int		ft_check_argv(char **argv);
+int		ft_check_row_lengths(char **map);
+int		ft_check_map_border(char **map);
 
 #endif
