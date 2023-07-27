@@ -7,7 +7,8 @@ FILES 		=	main \
 				ft_render_map \
 				ft_strlen_s \
 				map_utils \
-				movements
+				movements \
+				ft_check_argv
 
 SRCS 		= 	$(addsuffix .c, $(addprefix $(SRC_DIR)/, $(FILES)))
 OBJS 		= 	$(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(FILES)))
