@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:35:42 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 13:32:00 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 14:12:10 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,6 @@ t_init	*ft_init(char *argv)
 		printf("Map error!\n");
 		return (1);
 	}
-	int i = -1;
-	if (init->map)
-		while (init->map[++i])
-			printf("init->map[%i]: %s\n", i, init->map[i]);
 	printf("init win\n");
 	ft_init_mlx_win(init);
 	return (init);

@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 14:05:45 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 14:11:31 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,10 @@ void	ft_parse_map(char *file, int rows, t_init *init)
 		map[i] = get_next_line(fd);
 	map[i] = NULL;
 	close(fd);
-	printf("check map\n");
 	init->win_height = rows * 48;
 	init->win_width = ft_check_row_lengths(map) * 48;
 	if (ft_check_map(map, init) > 0)
-	{
 		init->map = map;
-		printf("check map success\n");
-	}
 }
 
 // int	main(void)

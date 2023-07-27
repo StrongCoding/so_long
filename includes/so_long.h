@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 12:37:00 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 14:13:38 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int			ft_check_argv(char **argv);
 int			ft_check_row_lengths(char **map);
 int			ft_check_map_border(char **map);
 t_init		*ft_newinit(void *mlx);
-t_init		*ft_init();
+t_init		*ft_init(char *argv);
 t_init		*ft_newinit(void *mlx);
 t_sprite	*ft_newsprite(char *content);
 

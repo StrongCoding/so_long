@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 09:34:10 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 10:06:49 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 14:12:36 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,10 @@ int	ft_check_map_border(char **map)
 		{
 			if ((!(map[i][j] == WALL) && (i == 0 || map[i + 1] == NULL)))
 			{
-				printf("erste und letzte schlecht map[%i][%i] == %c)!\n", i, j, map[i][j]);
 				return (-1);
 			}
 			if (!(map[i][0] == WALL && map[i][len - 1] == WALL))
 			{
-				printf("mitte schlecht! map[%i][%i] == %c)!\n", i, j, map[i][j]);
 				return (-1);
 			}
 			j++;
