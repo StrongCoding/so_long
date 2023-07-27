@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 17:30:40 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 17:34:08 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	ft_check_map(char **map, t_init *init)
 	}
 	if (ft_check_chars(map) < 0)
 	{
-		ft_printf("Error\nBad Char in .ber File!\n");
+		ft_printf("Error\nBad char or bad char count in .ber file!\n");
 		return (-1);
 	}
 	else if (ft_check_map_border(map) < 0)
