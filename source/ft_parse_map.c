@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 15:10:52 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 15:23:42 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,35 @@ int	ft_check_chars(char **map)
 		j = 0;
 	}
 	if (!(p == 1))
+		return (-1);
+	return (1);
+}
+
+int	ft_check_chars_count(char **map)
+{
+	int	c;
+	int	j;
+	int	p;
+	int	e;
+
+	p = 0;
+	c = 0;
+	j = 0;
+	e = 0;
+	while (map++)
+	{
+		while (map != NULL && map[0][j] != '\n' && map[0][j] != '\0')
+		{
+			if (map[0][j++] == GHOST)
+				p++;
+			if (map[0][j++] == EXIT)
+				e++;
+			if (map[0][j++] == COIN)
+				c++;
+		}
+		j = 0;
+	}
+	if (!(p == 1 && EXIT == 1 && c > 0))
 		return (-1);
 	return (1);
 }
