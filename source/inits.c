@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:35:42 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 14:12:10 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 14:35:12 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	ft_init_img(t_init *init)
 		init->wall->img != NULL && init->ground->img != NULL && 
 		init->ghost->img != NULL)
 		return (1);
-	printf("sprite error!/n");
 	return (-1);
 }
 
@@ -48,7 +47,6 @@ int	ft_init_sprites(t_init *init)
 		init->ground != NULL && init->ghost != NULL)
 		if (ft_init_img(init) > 0)
 			return (1);
-	printf("sprite error!/n");
 	return (-1);
 }
 
@@ -74,6 +72,7 @@ t_init	*ft_init(char *argv)
 	t_init	*init;
 	void	*mlx;
 
+	init = NULL;
 	mlx = mlx_init();
 	if (!mlx)
 	{
@@ -81,16 +80,16 @@ t_init	*ft_init(char *argv)
 		return (0);
 	}
 	init = ft_newinit(mlx);
-	printf("init sprite\n");
-	ft_init_sprites(init);
+	if (init == NULL)
+		return (NULL);
+	if (ft_init_sprites(init) < 0)
+		return (NULL);
 	printf("init map\n");
 	ft_parse_map(argv, ft_get_rows(argv), init);
 	if (init->map == NULL)
-	{
-		printf("Map error!\n");
-		return (1);
-	}
+		return (NULL);
 	printf("init win\n");
-	ft_init_mlx_win(init);
+	if (ft_init_mlx_win(init))
+		return (NULL);
 	return (init);
 }
