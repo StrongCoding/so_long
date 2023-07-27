@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:06:06 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 12:27:29 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/07/27 14:26:27 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_init	*ft_newinit(void *mlx)
 		tmp->collected_coins = 0;
 		tmp->coins = 0;
 		tmp->map = NULL;
+		tmp->error = 0;
 	}
 	return (tmp);
 }
