@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 17:38:05 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 09:42:49 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_get_rows(char *file)
 	return (count_rows);
 }
 
-//checks if there is one ghost, one exit and at least 1 coin
+//checks if there is one exit and at least 1 coin
 int	ft_check_chars_count(char **map)
 {
 	int	c;

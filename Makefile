@@ -10,7 +10,9 @@ FILES 		=	main \
 				movements \
 				ft_check_argv \
 				utils \
-				inits
+				inits \
+				ft_frame \
+				ft_print_movements
 
 SRCS 		= 	$(addsuffix .c, $(addprefix $(SRC_DIR)/, $(FILES)))
 OBJS 		= 	$(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(FILES)))

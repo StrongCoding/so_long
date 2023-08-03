@@ -6,12 +6,13 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:06:06 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 17:54:48 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 09:26:46 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// ft_bzero(sizeof(tmp))
 t_init	*ft_newinit(void *mlx)
 {
 	t_init	*tmp;
@@ -25,16 +26,23 @@ t_init	*ft_newinit(void *mlx)
 		tmp->win_width = 0;
 		tmp->ghost = NULL;
 		tmp->ground = NULL;
+		tmp->ghostr = NULL;
 		tmp->wall = NULL;
 		tmp->coin = NULL;
+		tmp->coin2 = NULL;
 		tmp->exit = NULL;
+		tmp->exitul = NULL;
+		tmp->won = NULL;
 		tmp->x = 0;
 		tmp->y = 0;
+		tmp->exit_x = 0;
+		tmp->exit_y = 0;
 		tmp->collected_coins = 0;
 		tmp->coins = 0;
 		tmp->map = NULL;
 		tmp->error = 0;
 		tmp->movements = 0;
+		tmp->frame = 0;
 	}
 	return (tmp);
 }
@@ -78,7 +86,6 @@ void	ft_close_programm(t_init *init)
 	ft_printf("Error\n");
 	exit(1);
 }
-
 
 int	create_trgb(int t, int r, int g, int b)
 {

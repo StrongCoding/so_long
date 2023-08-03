@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 17:55:40 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/01 16:31:15 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ int	key_hook_destroy(t_init *init)
 {
 	mlx_destroy_window(init->mlx, init->win);
 	exit(0);
+	return (1);
 }
 
+//triggering after minimizing, so screen is not black
 int	expose_hook(t_init *init)
 {
 	ft_render_map(init->map, init);
@@ -58,6 +60,7 @@ int	main(int argc, char **argv)
 		mlx_hook(init->win, KeyPress, KeyPressMask, key_hook, init);
 		mlx_hook(init->win, DestroyNotify, NoEventMask, key_hook_destroy, init);
 		mlx_hook(init->win, Expose, ExposureMask, expose_hook, init);
+		mlx_loop_hook(init->mlx, ft_frame, init);
 		mlx_loop(init->mlx);
 	}
 	return (0);

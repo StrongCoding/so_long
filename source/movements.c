@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 09:48:53 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 18:16:57 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 10:16:12 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,10 @@ int	ft_move_right(t_init *init)
 		init->ground->img, init->x, init->y);
 	init->map[init->y / 48][init->x / 48] = GROUND;
 	init->x += 48;
-	init->movements += 1;
+	ft_print_movements(init);
+	init->map[init->y / 48][init->x / 48] = GHOSTR;
 	mlx_put_image_to_window(init->mlx, init->win,
-		init->cloud->img, 10, 10);
-	mlx_string_put(init->mlx, init->win, 30, 15, create_trgb(0,255,122,122), "Movements:");
-	mlx_string_put(init->mlx, init->win, 90, 15, create_trgb(0,255,122,122), ft_itoa(init->movements));
-	init->map[init->y / 48][init->x / 48] = GHOST;
-	mlx_put_image_to_window(init->mlx, init->win,
-		init->ghost->img, init->x, init->y);
+		init->ghostr->img, init->x, init->y);
 	return (0);
 }
 
@@ -52,12 +48,21 @@ int	ft_move_up(t_init *init)
 		return (0);
 	mlx_put_image_to_window(init->mlx, init->win,
 		init->ground->img, init->x, init->y);
-	init->map[init->y / 48][init->x / 48] = GROUND;
 	init->y -= 48;
-	init->movements += 1;
-	init->map[init->y / 48][init->x / 48] = GHOST;
-	mlx_put_image_to_window(init->mlx, init->win,
-		init->ghost->img, init->x, init->y);
+	if (init->map[(init->y / 48) + 1][init->x / 48] == GHOST)
+	{
+		init->map[init->y / 48][init->x / 48] = GHOST;
+		mlx_put_image_to_window(init->mlx, init->win,
+			init->ghost->img, init->x, init->y);
+	}
+	if (init->map[(init->y / 48) + 1][init->x / 48] == GHOSTR)
+	{
+		init->map[init->y / 48][init->x / 48] = GHOSTR;
+		mlx_put_image_to_window(init->mlx, init->win,
+			init->ghostr->img, init->x, init->y);
+	}
+	init->map[(init->y / 48) + 1][init->x / 48] = GROUND;
+	ft_print_movements(init);
 	return (0);
 }
 
@@ -85,12 +90,15 @@ int	ft_check_movement(char **map, t_init *init, int x, int y)
 	{
 		init->collected_coins += 1;
 		map[(y / 48)][x / 48] = GROUND;
+		if (init->collected_coins == init->coins)
+			ft_render_unlocked_exit(init);
 		return (1);
 	}
-	if (map[(y / 48)][x / 48] == EXIT && init->collected_coins == init->coins)
+	if (map[(y / 48)][x / 48] == EXITU && init->collected_coins == init->coins)
 	{
-		printf("You won!\n");
-		return (-1);
+		mlx_put_image_to_window(init->mlx, init->win, init->won->img,
+			(init->win_width / 2) - 72, (init->win_height / 2) - 48);
+		return (0);
 	}
 	else
 		return (0);

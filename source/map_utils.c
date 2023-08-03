@@ -6,13 +6,13 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 09:34:10 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/07/27 17:35:46 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 10:03:17 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-//inits player coord and coint coint
+//inits player and exit coord and coint coint 
 void	ft_init_player_coord(char **map, t_init *init)
 {
 	int	i;
@@ -32,6 +32,11 @@ void	ft_init_player_coord(char **map, t_init *init)
 			if (map[i][j] == COIN)
 				init->coins += 1;
 			j++;
+			if (map[i][j] == EXIT)
+			{
+				init->exit_y = i * 48;
+				init->exit_x = j * 48;
+			}
 		}
 		j = 0;
 	}
