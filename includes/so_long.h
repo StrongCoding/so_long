@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 09:57:13 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 11:58:03 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define GHOSTR		82
 # define EXIT		69
 # define EXITU		85
+# define TRAP		84
 
 # define KEY_W		119
 # define KEY_A		97
@@ -65,12 +66,17 @@ typedef struct s_init {
 	t_sprite	*exitul;
 	t_sprite	*coin2;
 	t_sprite	*won;
+	t_sprite	*dead1;
+	t_sprite	*dead2;
+	t_sprite	*dead3;
+	t_sprite	*trap;
 	int			collected_coins;
 	int			coins;
 	char		**map;
 	int			error;
 	int			movements;
 	int			frame;
+	int			end;
 }				t_init;
 
 void		ft_parse_map(char *file, int rows, t_init *init);

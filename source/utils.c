@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:06:06 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 09:26:46 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 12:06:28 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ t_init	*ft_newinit(void *mlx)
 		tmp->exit = NULL;
 		tmp->exitul = NULL;
 		tmp->won = NULL;
+		tmp->dead1 = NULL;
+		tmp->dead2 = NULL;
+		tmp->dead3 = NULL;
 		tmp->x = 0;
 		tmp->y = 0;
 		tmp->exit_x = 0;
@@ -41,6 +44,7 @@ t_init	*ft_newinit(void *mlx)
 		tmp->coins = 0;
 		tmp->map = NULL;
 		tmp->error = 0;
+		tmp->end = 0;
 		tmp->movements = 0;
 		tmp->frame = 0;
 	}

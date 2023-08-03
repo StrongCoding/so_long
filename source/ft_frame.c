@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 14:24:43 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/01 15:28:49 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 11:55:59 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,37 @@ void	ft_render_coin(t_init *init, int c)
 	}
 }
 
+void	ft_render_dead(t_init *init, int c)
+{
+	if (c == 1)
+		mlx_put_image_to_window(init->mlx, init->win, init->dead1->img,
+			(init->win_width / 2) - 72, (init->win_height / 2) - 48);
+	if (c == 2)
+		mlx_put_image_to_window(init->mlx, init->win, init->dead2->img,
+			(init->win_width / 2) - 72, (init->win_height / 2) - 48);
+	if (c == 3)
+		mlx_put_image_to_window(init->mlx, init->win, init->dead3->img,
+			(init->win_width / 2) - 72, (init->win_height / 2) - 48);
+}
+
+
 int	ft_frame(t_init *init)
 {
 	init->frame += 1;
-	if (init->frame == 20000)
-	{
+	if (init->frame == 20000 && init->end == 0)
 		ft_render_coin(init, 1);
-	}
-	if (init->frame == 40000)
+	if (init->frame == 40000 && init->end == 0)
 	{
 		ft_render_coin(init, 2);
+		init->frame = 0;
+	}
+	if (init->frame == 100000 && init->end == 1)
+		ft_render_dead(init, 1);
+	if (init->frame == 200000 && init->end == 1)
+		ft_render_dead(init, 2);
+	if (init->frame == 300000 && init->end == 1)
+	{
+		ft_render_dead(init, 3);
 		init->frame = 0;
 	}
 	return (1);

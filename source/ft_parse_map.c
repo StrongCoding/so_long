@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 09:42:49 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 11:13:27 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int	ft_check_chars(char **map)
 		while (map[i] != NULL && map[i][j] != '\n' && map[i][j] != '\0')
 		{
 			if (!(map[i][j] == WALL || map[i][j] == GROUND || map[i][j] == COIN
-				|| map[i][j] == GHOST || map[i][j] == EXIT))
+				|| map[i][j] == GHOST || map[i][j] == EXIT
+				|| map[i][j] == TRAP))
 				return (-1);
 			if (map[i][j] == GHOST)
 				g++;
