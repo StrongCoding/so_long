@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:35:42 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 18:05:09 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 18:16:15 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ t_init	*ft_init(char *argv)
 	if (ft_init_sprites(init) < 0)
 		return (NULL);
 	ft_parse_map(argv, ft_get_rows(argv), init);
+	if (init->win_height > 1440 || init->win_width > 2560)
+	{
+		ft_printf("Error\nMap too big!");
+		return (NULL);
+	}
 	if (init->map == NULL)
 		return (NULL);
 	if (!ft_init_mlx_win(init))
