@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 14:24:43 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 11:55:59 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 12:36:01 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,13 @@ int	ft_frame(t_init *init)
 		ft_render_coin(init, 2);
 		init->frame = 0;
 	}
-	if (init->frame == 100000 && init->end == 1)
+	if (init->frame == 1 && init->end == 2)
 		ft_render_dead(init, 1);
-	if (init->frame == 200000 && init->end == 1)
+	if (init->frame == 75000 && init->end == 2)
 		ft_render_dead(init, 2);
-	if (init->frame == 300000 && init->end == 1)
-	{
+	if (init->frame == 150000 && init->end == 2)
 		ft_render_dead(init, 3);
+	if (init->frame == 225000 && init->end == 2)
 		init->frame = 0;
-	}
 	return (1);
 }

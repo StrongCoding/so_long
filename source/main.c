@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/01 16:31:15 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 12:17:34 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int	main(int argc, char **argv)
 	char		**map;
 
 	if (argc != 2)
+	{
+		ft_printf("Error\nwrong parameter count\n");
 		return (1);
+	}
 	if (ft_check_argv(argv) < 1)
 		return (1);
 	init = ft_init(argv[1]);

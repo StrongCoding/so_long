@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 09:48:53 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 11:44:30 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 12:35:37 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,15 @@ int	ft_move_down(t_init *init)
 //if next move is okay return 1
 int	ft_check_movement(char **map, t_init *init, int x, int y)
 {
-	if (init->end == 1)
+	if (init->end != 0)
 		return (0);
 	if (map[(y / 48)][x / 48] == GROUND)
 		return (1);
 	else if (map[(y / 48)][x / 48] == TRAP)
 	{
-		printf("you lost!\n");
-		init->end = 1;
+		mlx_put_image_to_window(init->mlx, init->win, init->dead1->img,
+			(init->win_width / 2) - 72, (init->win_height / 2) - 48);
+		init->end = 2;
 	}
 	else if (map[(y / 48)][x / 48] == COIN)
 	{
