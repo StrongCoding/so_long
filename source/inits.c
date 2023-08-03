@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:35:42 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 17:48:34 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 18:05:09 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	ft_init_sprites(t_init *init)
 		&& init->dead3 != NULL)
 		if (ft_init_img(init) > 0)
 			return (1);
+	ft_printf("Error\nSprite problem!\n");
 	return (-1);
 }
 
