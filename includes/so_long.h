@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 11:58:03 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:22:49 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_init {
 }				t_init;
 
 void		ft_parse_map(char *file, int rows, t_init *init);
-size_t		ft_strlen_s(const char *s);
+int			ft_strlen_s(const char *s);
 int			ft_get_rows(char *file);
 void		ft_render_map(char **map, t_init *init);
 void		ft_init_player_coord(char **map, t_init *init);
@@ -101,5 +101,10 @@ int			create_trgb(int t, int r, int g, int b);
 int			ft_frame(t_init *init);
 void		ft_print_movements(t_init *init);
 void		ft_render_unlocked_exit(t_init *init);
+int			ft_good_end(t_init *init);
+int			ft_init_img_one(t_init *init);
+int			ft_init_img_two(t_init *init);
+int			ft_init_img_three(t_init *init);
+
 
 #endif

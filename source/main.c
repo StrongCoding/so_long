@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 12:17:34 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:19:58 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ int	expose_hook(t_init *init)
 
 int	main(int argc, char **argv)
 {
-	void		*mlx;
 	t_init		*init;
-	char		**map;
 
 	if (argc != 2)
 	{

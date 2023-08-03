@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:35:42 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 11:57:47 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:48:34 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,14 @@
 
 int	ft_init_img(t_init *init)
 {
-	init->ghost->img = mlx_xpm_file_to_image(init->mlx,
-			init->ghost->relative_path, &init->ghost->width,
-			&init->ghost->height);
-	init->ghostr->img = mlx_xpm_file_to_image(init->mlx,
-			init->ghostr->relative_path, &init->ghostr->width,
-			&init->ghostr->height);
-	init->coin2->img = mlx_xpm_file_to_image(init->mlx,
-			init->coin2->relative_path, &init->coin2->width,
-			&init->coin2->height);
-	init->ground->img = mlx_xpm_file_to_image(init->mlx,
-			init->ground->relative_path, &init->ground->width,
-			&init->ground->height);
-	init->wall->img = mlx_xpm_file_to_image(init->mlx,
-			init->wall->relative_path, &init->wall->width,
-			&init->wall->height);
-	init->coin->img = mlx_xpm_file_to_image(init->mlx,
-			init->coin->relative_path, &init->coin->width,
-			&init->coin->height);
-	init->exit->img = mlx_xpm_file_to_image(init->mlx,
-			init->exit->relative_path, &init->exit->width,
-			&init->exit->height);
-	init->exitul->img = mlx_xpm_file_to_image(init->mlx,
-			init->exitul->relative_path, &init->exitul->width,
-			&init->exitul->height);
-	init->won->img = mlx_xpm_file_to_image(init->mlx,
-			init->won->relative_path, &init->won->width,
-			&init->won->height);
-	init->trap->img = mlx_xpm_file_to_image(init->mlx,
-			init->trap->relative_path, &init->trap->width,
-			&init->trap->height);
-	init->dead1->img = mlx_xpm_file_to_image(init->mlx,
-			init->dead1->relative_path, &init->dead1->width,
-			&init->dead1->height);
-	init->dead2->img = mlx_xpm_file_to_image(init->mlx,
-			init->dead2->relative_path, &init->dead2->width,
-			&init->dead2->height);
-	init->dead3->img = mlx_xpm_file_to_image(init->mlx,
-			init->dead3->relative_path, &init->dead3->width,
-			&init->dead3->height);
-	if (init->exit->img != NULL && init->coin->img != NULL && 
-		init->wall->img != NULL && init->ground->img != NULL && 
-		init->ghost->img != NULL && init->coin2->img != NULL && 
-		init->won->img != NULL && init->trap->img != NULL)
+	if (ft_init_img_one(init) < 1)
+		return (-1);
+	if (ft_init_img_two(init) < 1)
+		return (-1);
+	if (ft_init_img_three(init) < 1)
+		return (-1);
+	else
 		return (1);
-	return (-1);
 }
 
 int	ft_init_sprites(t_init *init)
@@ -77,7 +40,10 @@ int	ft_init_sprites(t_init *init)
 	init->dead2 = ft_newsprite("./sprites/dead2.xpm");
 	init->dead3 = ft_newsprite("./sprites/dead3.xpm");
 	if (init->exit != NULL && init->coin != NULL && init->wall != NULL && 
-		init->ground != NULL && init->ghost != NULL && init->coin2 != NULL)
+		init->ground != NULL && init->ghost != NULL && init->coin2 != NULL
+		&& init->ghostr != NULL && init->exitul != NULL && init->won != NULL
+		&& init->trap != NULL && init->dead1 != NULL && init->dead2 != NULL
+		&& init->dead3 != NULL)
 		if (ft_init_img(init) > 0)
 			return (1);
 	return (-1);

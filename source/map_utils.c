@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 09:34:10 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 10:03:17 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:23:29 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,7 @@ int	ft_check_row_lengths(char **map)
 //check path
 int	ft_check_path(char **map)
 {
+	if (map)
+		return (1);
 	return (1);
 }

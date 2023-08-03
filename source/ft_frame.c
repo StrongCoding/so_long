@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 14:24:43 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 12:36:01 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 15:41:50 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_render_dead(t_init *init, int c)
 		mlx_put_image_to_window(init->mlx, init->win, init->dead3->img,
 			(init->win_width / 2) - 72, (init->win_height / 2) - 48);
 }
-
 
 int	ft_frame(t_init *init)
 {

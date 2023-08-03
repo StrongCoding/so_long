@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 09:48:53 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 12:35:37 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:24:44 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	ft_check_movement(char **map, t_init *init, int x, int y)
 		mlx_put_image_to_window(init->mlx, init->win, init->dead1->img,
 			(init->win_width / 2) - 72, (init->win_height / 2) - 48);
 		init->end = 2;
+		return (0);
 	}
 	else if (map[(y / 48)][x / 48] == COIN)
 	{
@@ -111,13 +112,9 @@ int	ft_check_movement(char **map, t_init *init, int x, int y)
 			ft_render_unlocked_exit(init);
 		return (1);
 	}
-	else if (map[(y / 48)][x / 48] == EXITU && init->collected_coins == init->coins)
-	{
-		mlx_put_image_to_window(init->mlx, init->win, init->won->img,
-			(init->win_width / 2) - 72, (init->win_height / 2) - 48);
-		init->end = 1;
-		return (0);
-	}
+	else if (map[(y / 48)][x / 48] == EXITU &&
+			init->collected_coins == init->coins)
+		return (ft_good_end(init));
 	else
 		return (0);
 }

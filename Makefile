@@ -12,13 +12,14 @@ FILES 		=	main \
 				utils \
 				inits \
 				ft_frame \
-				ft_print_movements
+				ft_print_movements \
+				utils_2
 
 SRCS 		= 	$(addsuffix .c, $(addprefix $(SRC_DIR)/, $(FILES)))
 OBJS 		= 	$(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(FILES)))
 
 NAME		=	so_long
-#FLAGS		=	-Wall -Werror -Wextra -Ofast
+#FLAGS		=	-Wall -Werror -Wextra
 FLAGS		= 	-g -fsanitize=address
 MLX_FLAGS	=	-L/usr/X11/lib -lX11 -lXext -lm
 INC			=	-I $(INC_DIR) -I $(LIBFT_DIR) -I $(MLX_DIR) -I /usr/X11/include

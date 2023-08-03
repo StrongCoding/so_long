@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 11:13:27 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:21:41 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	ft_check_chars(char **map)
 
 //returns 1 if all chars in map are valid and all rows have same length
 //error return -1 and give start position player
-int	ft_check_map(char **map, t_init *init)
+int	ft_check_map(char **map)
 {
 	if (ft_check_row_lengths(map) < 0)
 	{
@@ -128,7 +128,6 @@ int	ft_check_map(char **map, t_init *init)
 void	ft_parse_map(char *file, int rows, t_init *init)
 {
 	int		fd;
-	char	*row;
 	char	**map;
 	int		i;
 
@@ -143,7 +142,7 @@ void	ft_parse_map(char *file, int rows, t_init *init)
 	close(fd);
 	init->win_height = rows * 48;
 	init->win_width = ft_check_row_lengths(map) * 48;
-	if (ft_check_map(map, init) > 0)
+	if (ft_check_map(map) > 0)
 		init->map = map;
 }
 
