@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/04 12:16:16 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 12:22:24 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,19 @@ int	ft_check_map(char **map, t_init *init, int rows)
 	if (ft_check_row_lengths(map) < 0)
 	{
 		ft_printf("Error\nMap is not rectrangular!\n");
+		ft_free_map(map);
 		return (-1);
 	}
 	if (ft_check_chars(map) < 0)
 	{
 		ft_printf("Error\nBad char or bad char count in .ber file!\n");
+		ft_free_map(map);
 		return (-1);
 	}
 	if (ft_check_map_border(map) < 0)
 	{
 		ft_printf("Error\nMap is not sourrounded by walls!\n");
+		ft_free_map(map);
 		return (-1);
 	}
 	ft_init_player_coord(map, init);
@@ -120,6 +123,8 @@ int	ft_check_map(char **map, t_init *init, int rows)
 	if (ft_check_path(init) < 0)
 	{
 		ft_printf("Error\nGame not solveable!\n");
+		ft_free_map(map);
+		ft_free_map(init->map_copy);
 		return (-1);
 	}
 	return (1);
@@ -145,6 +150,9 @@ void	ft_parse_map(char *file, int rows, t_init *init)
 	init->win_width = ft_check_row_lengths(map) * 48;
 	if (ft_check_map(map, init, rows) > 0)
 		init->map = map;
+	// if (ft_check_map(map, init, rows) < 0)
+	// 	init->error = 1;
+	// init->map = map;
 }
 
 // int	main(void)
