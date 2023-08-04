@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 17:22:49 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 12:15:57 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_init {
 	int			collected_coins;
 	int			coins;
 	char		**map;
+	char		**map_copy;
 	int			error;
 	int			movements;
 	int			frame;
@@ -96,7 +97,7 @@ t_init		*ft_newinit(void *mlx);
 t_init		*ft_init(char *argv);
 t_init		*ft_newinit(void *mlx);
 t_sprite	*ft_newsprite(char *content);
-int			ft_check_path(char **map);
+int			ft_check_path(t_init *init);
 int			create_trgb(int t, int r, int g, int b);
 int			ft_frame(t_init *init);
 void		ft_print_movements(t_init *init);
@@ -105,6 +106,12 @@ int			ft_good_end(t_init *init);
 int			ft_init_img_one(t_init *init);
 int			ft_init_img_two(t_init *init);
 int			ft_init_img_three(t_init *init);
-
+char		**ft_copy_map(int rows, char **map);
+int			ft_check_flooded_map(char **map);
+int			ft_check_map_size(t_init *init);
+t_init		*ft_close_programm(t_init *init);
+void		ft_free_all_images(t_init *init);
+void		ft_destroy_all_images(t_init *init);
+void		ft_free_map(char **map);
 
 #endif

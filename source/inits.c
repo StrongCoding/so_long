@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:35:42 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 18:16:15 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 11:02:20 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	ft_init_mlx_win(t_init *init)
 		ft_printf("Error\nWindow creation failed!\n");
 		return (0);
 	}
-	ft_init_player_coord(init->map, init);
 	ft_render_map(init->map, init);
 	return (1);
 }
@@ -78,18 +77,15 @@ t_init	*ft_init(char *argv)
 	}
 	init = ft_newinit(mlx);
 	if (init == NULL)
-		return (NULL);
+		return (ft_close_programm(init));
 	if (ft_init_sprites(init) < 0)
-		return (NULL);
+		return (ft_close_programm(init));
 	ft_parse_map(argv, ft_get_rows(argv), init);
-	if (init->win_height > 1440 || init->win_width > 2560)
-	{
-		ft_printf("Error\nMap too big!");
-		return (NULL);
-	}
+	if (ft_check_map_size(init) < 1)
+		return (ft_close_programm(init));
 	if (init->map == NULL)
-		return (NULL);
+		return (ft_close_programm(init));
 	if (!ft_init_mlx_win(init))
-		return (NULL);
+		return (ft_close_programm(init));
 	return (init);
 }

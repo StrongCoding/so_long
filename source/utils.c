@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:06:06 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 17:15:04 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 12:09:24 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_init	*ft_newinit(void *mlx)
 		tmp->collected_coins = 0;
 		tmp->coins = 0;
 		tmp->map = NULL;
+		tmp->map_copy = NULL;
 		tmp->error = 0;
 		tmp->end = 0;
 		tmp->movements = 0;
@@ -82,41 +83,45 @@ t_sprite	*ft_newsprite(char *content)
 	return (tmp);
 }
 
+// void	ft_free_map(char **map)
+// {
+// 	int	i;
+// 	int	len;
+
+// 	i = 0;
+// 	len = ft_check_row_lengths(map);
+// 	while (i <= len)
+// 		free(map[i++]);
+// 	free(map[i]);
+// 	free(map);
+// }
 void	ft_free_map(char **map)
 {
 	int	i;
-	int	len;
 
 	i = 0;
-	len = ft_check_row_lengths(map);
-	while (i <= len)
+	while (map[i])
 		free(map[i++]);
+	free(map[i]);
 	free(map);
 }
 
-void	ft_close_programm(t_init *init)
+t_init	*ft_close_programm(t_init *init)
 {
 	if (init != NULL)
 	{
 		if (init->map != NULL)
 		{
 			ft_free_map(init->map);
+			ft_free_map(init->map_copy);
 		}
-		free(init->ghost);
-		free(init->ghostr);
-		free(init->ground);
-		free(init->wall);
-		free(init->coin);
-		free(init->exit);
-		free(init->exitul);
-		free(init->coin2);
-		free(init->won);
-		free(init->dead1);
-		free(init->dead2);
-		free(init->dead3);
-		free(init->trap);
-		free(init);
+		if (init->ghost != NULL && init->mlx != NULL)
+		{
+			ft_destroy_all_images(init);
+		}
+		ft_free_all_images(init);
+		mlx_destroy_display(init->mlx);
 	}
-	ft_printf("Closed\n");
-	exit(1);
+	free(init);
+	return (NULL);
 }

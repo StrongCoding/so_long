@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:53:23 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/04 09:57:25 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 12:10:24 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,16 @@ int	ft_check_flooded_map(char **map)
 			j++;
 		}
 		j = 0;
+	}
+	return (1);
+}
+
+int	ft_check_map_size(t_init *init)
+{
+	if (init->win_height > 1440 || init->win_width > 2560)
+	{
+		ft_printf("Error\nMap too big\n");
+		return (-1);
 	}
 	return (1);
 }

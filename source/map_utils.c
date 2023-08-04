@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 09:34:10 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 17:23:29 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 09:57:16 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,25 @@ int	ft_check_row_lengths(char **map)
 	return (len);
 }
 
-//check path
-int	ft_check_path(char **map)
+void	ft_floodfill(char **map, int x, int y)
 {
-	if (map)
-		return (1);
+	if (x <= 0 || y <= 0)
+		return ;
+	if (map[y][x] == 'X' || map[y][x] == WALL || 
+			map[y][x] == EXIT || map[y][x] == TRAP)
+		return ;
+	map[y][x] = 'X';
+	ft_floodfill(map, x, y + 1);
+	ft_floodfill(map, x, y - 1);
+	ft_floodfill(map, x + 1, y);
+	ft_floodfill(map, x - 1, y);
+}
+
+//check path
+int	ft_check_path(t_init *init)
+{
+	ft_floodfill(init->map_copy, init->x / 48, init->y / 48);
+	if (ft_check_flooded_map(init->map_copy) < 1)
+		return (-1);
 	return (1);
 }

@@ -6,11 +6,11 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 14:24:43 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 15:41:50 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 10:28:01 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "so_long.h"
 
 void	ft_render_coin_row(char *row, t_init *init, int y, int c)
 {

@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 21:09:00 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 18:14:31 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 12:16:16 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	ft_check_chars(char **map)
 
 //returns 1 if all chars in map are valid and all rows have same length
 //error return -1 and give start position player
-int	ft_check_map(char **map)
+int	ft_check_map(char **map, t_init *init, int rows)
 {
 	if (ft_check_row_lengths(map) < 0)
 	{
@@ -110,18 +110,19 @@ int	ft_check_map(char **map)
 		ft_printf("Error\nBad char or bad char count in .ber file!\n");
 		return (-1);
 	}
-	else if (ft_check_map_border(map) < 0)
+	if (ft_check_map_border(map) < 0)
 	{
 		ft_printf("Error\nMap is not sourrounded by walls!\n");
 		return (-1);
 	}
-	else if (ft_check_path(map) < 0)
+	ft_init_player_coord(map, init);
+	init->map_copy = ft_copy_map(rows, map);
+	if (ft_check_path(init) < 0)
 	{
 		ft_printf("Error\nGame not solveable!\n");
 		return (-1);
 	}
-	else
-		return (1);
+	return (1);
 }
 
 // return 2D array, every line ends with \n or \0
@@ -142,7 +143,7 @@ void	ft_parse_map(char *file, int rows, t_init *init)
 	close(fd);
 	init->win_height = rows * 48;
 	init->win_width = ft_check_row_lengths(map) * 48;
-	if (ft_check_map(map) > 0)
+	if (ft_check_map(map, init, rows) > 0)
 		init->map = map;
 }
 

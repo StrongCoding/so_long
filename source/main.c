@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 11:45:21 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/03 17:19:58 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 11:51:57 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	key_hook(int keycode, t_init *init)
 		ft_move_right(init);
 	else if (keycode == KEY_ESC || keycode == KEY_Q)
 	{
-		mlx_destroy_window(init->mlx, init->win);
+		ft_close_programm(init);
 		exit(0);
 	}
 	return (0);
@@ -32,7 +32,7 @@ int	key_hook(int keycode, t_init *init)
 
 int	key_hook_destroy(t_init *init)
 {
-	mlx_destroy_window(init->mlx, init->win);
+	ft_close_programm(init);
 	exit(0);
 	return (1);
 }
@@ -64,5 +64,6 @@ int	main(int argc, char **argv)
 		mlx_loop_hook(init->mlx, ft_frame, init);
 		mlx_loop(init->mlx);
 	}
+	ft_close_programm(init);
 	return (0);
 }
