@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 19:53:23 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/04 09:52:34 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 09:57:25 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**ft_copy_map(int rows, char **map)
 	return (map_copy);
 }
 
-int	ft_check_flodded_map(char **map)
+int	ft_check_flooded_map(char **map)
 {
 	int	i;
 	int	j;
