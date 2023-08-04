@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:43:01 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/04 12:15:57 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 13:12:55 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,6 @@ int			ft_check_map_size(t_init *init);
 t_init		*ft_close_programm(t_init *init);
 void		ft_free_all_images(t_init *init);
 void		ft_destroy_all_images(t_init *init);
-void		ft_free_map(char **map);
+int			ft_free_map(char **map);
 
 #endif
