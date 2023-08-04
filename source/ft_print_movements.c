@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 08:45:02 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/04 11:23:35 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 13:10:14 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_print_movements(t_init *init)
 {
 	char	*string;
-	
+
 	init->movements += 1;
 	string = ft_itoa(init->movements);
 	mlx_put_image_to_window(init->mlx, init->win,

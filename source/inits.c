@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:35:42 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/04 12:46:37 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 13:10:03 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,7 @@ t_init	*ft_init(char *argv)
 	if (ft_check_map_size(init) < 1)
 		return (ft_close_programm(init));
 	if (init->map == NULL)
-	{
-		printf("ich mag pommes mit map error\n");
 		return (ft_close_programm(init));
-	}
 	if (!ft_init_mlx_win(init))
 		return (ft_close_programm(init));
 	return (init);
