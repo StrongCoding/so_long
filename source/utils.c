@@ -6,7 +6,7 @@
 /*   By: dnebatz <dnebatz@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:06:06 by dnebatz           #+#    #+#             */
-/*   Updated: 2023/08/04 13:11:11 by dnebatz          ###   ########.fr       */
+/*   Updated: 2023/08/04 13:27:22 by dnebatz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,9 @@ t_init	*ft_close_programm(t_init *init)
 		}
 		if (init->ghost != NULL && init->mlx != NULL)
 		{
-			printf("i will destroy you images!\n");
 			ft_destroy_all_images(init);
 		}
 		ft_free_all_images(init);
-		printf("i will destroy you windows!\n");
 		mlx_destroy_display(init->mlx);
 		free(init->mlx);
 	}
